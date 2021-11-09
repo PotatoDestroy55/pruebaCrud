@@ -1,5 +1,7 @@
 package Frames;
 
+
+// Imports from the libraries
 import Clases.Conection;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,104 +12,49 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+/**
+ *
+ * Class that allow to a user insert new information on the DB
+ * Version: 08/11/2021
+ *
+ */
 public class Principal extends javax.swing.JFrame{
 
-        public Principal(){
 
-                this.setLocationRelativeTo(null);
-
-                /*limpiar();
-                mostrarTabla("");
-
-                txtID.setEnabled(false);*/
-
-                guardarButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-
-                        }
-                });
+        /**
+         * Main method that allow run the form called: Principal
+         * @param args
+         */
+        public static void main(String[] args) {
+                JFrame frame = new JFrame("Principal");
+                frame.setContentPane(new Principal().Jpanel);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
         }
 
-
-
-        void limpiar(){
-                txtID.setText("");
-                txtNombre.setText("");
-                txtApellidos.setText("");
-                txtDireccion.setText("");
-                txtTelefono.setText("");
-
-        }
-
-        void mostrarTabla(String valor){
-                //
-                DefaultTableModel modelo = new DefaultTableModel();
-
-                modelo.addColumn("ID");
-                modelo.addColumn("NOMBRE");
-                modelo.addColumn("APELLIDOS");
-                modelo.addColumn("DIRECCION");
-                modelo.addColumn("TELEFONO");
-
-                tabla.setModel(modelo);
-
-                String sql = "SELECT * FROM empleados WHERE CONCAT (nombre, '', apellidos) LIKE '%"+valor+"%'";
-
-                String datos[] = new String[5];
-
-                Statement st;
-
-                try{
-                      //
-                      st = cn.createStatement();
-
-                      ResultSet rs = st.executeQuery(sql);
-
-                      while (rs.next()){
-                              datos[0] =  rs.getString(1);
-                              datos[1] =  rs.getString(2);
-                              datos[2] =  rs.getString(3);
-                              datos[3] =  rs.getString(4);
-                              datos[4] =  rs.getString(5);
-
-                              modelo.addRow(datos);
-
-
-                      }
-
-                      tabla.setModel(modelo);
-
-
-                }catch (SQLException e)
-                {
-                        System.err.println("Error en el llamado de la tabla");
-                        JOptionPane.showMessageDialog(null,"Error en el llamado de la tabla");
-
-
-
-                }
-        }
-
-        // Inicio de las variables de la forma.
+        // Begin of the elements of the form
         private JTextField txtID;
-        private JTextField txtNombre;
-        private JTextField txtApellidos;
-        private JTable tabla;
-        private JTextField txtDireccion;
-        private JButton guardarButton;
-        private JButton actualizarButton;
-        private JButton cancelarButton;
-        private JButton imprimirReporteButton;
+        private JTextField txtAuthor;
+        private JTable table;
+        private JTextField txtIsbn;
+        private JButton saveBtn;
+        private JButton updateBtn;
+        private JButton cancelBtn;
+        private JButton reportButton;
         private JPanel Jpanel;
-        private JLabel LabelRegistroEmpleados;
-        private JPanel PanelRegistroEmpleados;
-        private JTextField txtTelefono;
-        // Final de las variables
+        private JLabel LabelRegistroLibros;
+        private JPanel PanelRegistroLibros;
+        private JTextField txtLastName;
+        private JTextField txtLastName2;
+        private JTextField txtDatePub;
+        private JTextField txtEditorial;
+        private JTextField txtEdition;
+        private JTextField txtGender;
+        private JTextField txtTitle;
+        // End of the elements used on the form
 
-        // Importar la conexion
-        Conection con = new Conection();
-        Connection cn = con.conexion();
 
 
 }
